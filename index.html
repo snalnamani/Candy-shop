@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Craveret — Sweet Moments Delivered</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  /* --- GLOBAL STYLES --- */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* --- GLOBAL STYLES & APP FEEL --- */
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { 
     font-family: 'Poppins', sans-serif; 
     background-color: #fffafb; 
     color: #4a3b32; 
     line-height: 1.6;
+    overflow-x: hidden;
   }
   
-  /* --- HEADER --- */
+  /* --- HEADER (STICKY APP BAR) --- */
   header { 
     background: rgba(255, 255, 255, 0.95); 
     backdrop-filter: blur(10px);
@@ -33,6 +34,9 @@
     font-size: 1.8rem; 
     color: #e56b81; 
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   #cart-btn { 
     background: #ffe0e6; 
@@ -44,35 +48,39 @@
     font-size: 1rem; 
     cursor: pointer; 
     transition: all 0.3s ease; 
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  #cart-btn:hover { background: #ffc2cd; transform: scale(1.05); }
+  #cart-btn:active { transform: scale(0.95); }
 
   /* --- HERO SECTION --- */
   .hero { 
     text-align: center; 
-    padding: 100px 20px; 
+    padding: 80px 20px 100px; 
     background: linear-gradient(135deg, #ffe0e6 0%, #fffafb 100%); 
-    border-bottom-left-radius: 50% 20px;
-    border-bottom-right-radius: 50% 20px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    position: relative;
   }
   .hero h2 { 
     font-family: 'Fredoka', sans-serif; 
-    font-size: 3.5rem; 
+    font-size: 2.8rem; 
     margin-bottom: 15px; 
     color: #d64d67; 
-    line-height: 1.2;
+    line-height: 1.1;
   }
   .hero p { 
     color: #7a5a4a; 
-    font-size: 1.2rem; 
+    font-size: 1.1rem; 
     max-width: 600px; 
-    margin: 0 auto 30px auto; 
+    margin: 0 auto; 
   }
 
   /* --- ABOUT SECTION --- */
   .about { 
     background: #fff; 
-    padding: 80px 20px; 
+    padding: 60px 20px; 
     text-align: center; 
     max-width: 800px;
     margin: 0 auto;
@@ -80,44 +88,38 @@
   .about h2 { 
     font-family: 'Fredoka', sans-serif; 
     color: #e56b81; 
-    margin-bottom: 20px; 
-    font-size: 2.5rem; 
+    margin-bottom: 15px; 
+    font-size: 2.2rem; 
   }
-  .about p { 
-    font-size: 1.1rem; 
-    color: #665; 
-  }
+  .about p { font-size: 1.05rem; color: #665; }
 
-  /* --- PRODUCT GRID --- */
+  /* --- PRODUCT GRID (APP CARDS) --- */
   .section-title { 
     text-align: center; 
     font-family: 'Fredoka', sans-serif; 
-    font-size: 2.5rem; 
+    font-size: 2.2rem; 
     color: #d64d67; 
     margin-top: 40px; 
   }
   .grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-    gap: 30px; 
-    padding: 40px 5%; 
+    gap: 25px; 
+    padding: 30px 5%; 
     max-width: 1200px; 
     margin: 0 auto; 
   }
   .card { 
     background: #fff; 
-    border-radius: 20px; 
+    border-radius: 24px; 
     overflow: hidden; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
     display: flex; 
     flex-direction: column; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    transition: transform 0.2s ease; 
     border: 1px solid #f0f0f0;
   }
-  .card:hover { 
-    transform: translateY(-8px); 
-    box-shadow: 0 15px 40px rgba(255, 141, 161, 0.2);
-  }
+  .card:active { transform: scale(0.98); }
   .card img { 
     width: 100%; 
     height: 220px; 
@@ -132,48 +134,73 @@
   }
   .card h3 { 
     font-family: 'Fredoka', sans-serif; 
-    font-size: 1.4rem; 
-    margin-bottom: 5px; 
+    font-size: 1.3rem; 
+    margin-bottom: 4px; 
     color: #4a3b32; 
   }
   .card .price { 
     color: #e56b81; 
     font-weight: 600; 
-    font-size: 1.2rem; 
-    margin-bottom: 10px; 
+    font-size: 1.1rem; 
+    margin-bottom: 8px; 
   }
   .card .allergens { 
-    font-size: 0.85rem; 
+    font-size: 0.8rem; 
     color: #999; 
-    margin-bottom: 20px; 
+    margin-bottom: 15px; 
   }
   .card button { 
     margin-top: auto; 
     background: #ff8da1; 
     color: #fff; 
     border: none; 
-    padding: 14px; 
+    padding: 12px; 
     border-radius: 12px; 
     cursor: pointer; 
     font-weight: 600; 
-    font-size: 1.05rem; 
+    font-size: 1rem; 
     transition: background 0.3s ease; 
   }
-  .card button:hover { background: #d64d67; }
+  .card button:active { background: #d64d67; }
 
-  /* --- CART PANEL --- */
+  /* --- VISIT US SECTION --- */
+  .visit-us {
+    background: #ffe0e6;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 40px;
+    margin: 40px 5%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .visit-us h2 {
+    font-family: 'Fredoka', sans-serif;
+    color: #d64d67;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+  .visit-us .info-item {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #4a3b32;
+    font-weight: 500;
+  }
+  .visit-us .info-item strong { color: #e56b81; }
+
+  /* --- CART PANEL (SLIDING FROM RIGHT) --- */
   #cart-panel { 
     position: fixed; 
     right: 0; 
     top: 0; 
     height: 100%; 
-    width: 400px; 
-    max-width: 100%; 
+    width: 100%; 
+    max-width: 400px; 
     background: #fff; 
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+    box-shadow: -10px 0 40px rgba(0,0,0,0.2); 
     transform: translateX(100%); 
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-    padding: 30px; 
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    padding: 25px; 
     overflow-y: auto; 
     z-index: 200; 
     display: flex; 
@@ -182,29 +209,33 @@
   #cart-panel.open { transform: translateX(0); }
   #cart-panel h2 { 
     font-family: 'Fredoka', sans-serif; 
-    margin-bottom: 20px; 
+    margin-bottom: 15px; 
     color: #d64d67; 
     font-size: 1.8rem;
   }
   #close-cart { 
-    background: none; 
+    background: #f0f0f0; 
     border: none; 
-    font-size: 2rem; 
+    font-size: 1.5rem; 
     cursor: pointer; 
     position: absolute; 
     top: 20px; 
     right: 20px; 
-    color: #999; 
-    transition: color 0.2s;
+    color: #555; 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  #close-cart:hover { color: #d64d67; }
   
   .cart-item { 
     display: flex; 
     justify-content: space-between; 
     padding: 15px 0; 
     border-bottom: 1px solid #eee; 
-    font-size: 1rem; 
+    font-size: 0.95rem; 
   }
   .cart-item button { 
     background: none; 
@@ -215,32 +246,32 @@
     padding: 0 10px; 
   }
   #cart-total { 
-    margin: 25px 0; 
+    margin: 20px 0; 
     font-weight: 600; 
-    font-size: 1.5rem; 
+    font-size: 1.4rem; 
     color: #d64d67; 
     text-align: right;
   }
   
   /* --- FORM FIELDS --- */
-  .form-group { margin-bottom: 15px; }
+  .form-group { margin-bottom: 12px; }
   .form-group label { 
     display: block; 
-    font-size: 0.9rem; 
+    font-size: 0.85rem; 
     margin-bottom: 5px; 
     color: #665; 
     font-weight: 600;
   }
   .form-group input { 
     width: 100%; 
-    padding: 12px; 
+    padding: 14px; 
     border: 1px solid #ddd; 
-    border-radius: 10px; 
+    border-radius: 12px; 
     font-family: 'Poppins', sans-serif; 
     font-size: 1rem;
-    transition: border 0.3s;
+    background: #fafafa;
   }
-  .form-group input:focus { outline: none; border-color: #ff8da1; }
+  .form-group input:focus { outline: none; border-color: #ff8da1; background: #fff; }
   
   #checkout-btn { 
     width: 100%; 
@@ -248,32 +279,34 @@
     color: #fff; 
     border: none; 
     padding: 18px; 
-    border-radius: 12px; 
+    border-radius: 14px; 
     font-weight: 600; 
     font-size: 1.1rem; 
     cursor: pointer; 
-    transition: background 0.3s ease; 
-    margin-top: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
-  #checkout-btn:hover { background: #1da851; }
+  #checkout-btn:active { background: #1da851; }
 
   /* --- FOOTER --- */
   footer { 
     text-align: center; 
-    padding: 60px 20px; 
+    padding: 40px 20px; 
     background: #4a3b32; 
     color: #fff; 
-    margin-top: 80px; 
   }
-  footer h3 { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; margin-bottom: 10px; }
-  footer p { opacity: 0.8; font-size: 0.9rem; margin-bottom: 5px; }
+  footer h3 { font-family: 'Fredoka', sans-serif; font-size: 1.5rem; margin-bottom: 5px; }
+  footer p { opacity: 0.7; font-size: 0.85rem; }
 </style>
 </head>
 <body>
 
 <header>
   <h1>🍬 Craveret</h1>
-  <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+  <button id="cart-btn">Cart <span id="cart-count" style="background: #d64d67; color: white; border-radius: 50%; padding: 2px 8px; font-size: 0.8rem;">0</span></button>
 </header>
 
 <section class="hero">
@@ -283,11 +316,18 @@
 
 <section class="about">
   <h2>About Craveret</h2>
-  <p>Welcome to Craveret! We are a passionate, family-run candy shop based in Kigali. We believe that every day deserves a little sweetness. Whether you are treating yourself, surprising a friend, or celebrating a special occasion, we handpick the best treats to bring a smile to your face.</p>
+  <p>We believe that every day deserves a little sweetness. Whether you are treating yourself, surprising a friend, or celebrating a special occasion, we handpick the best treats to bring a smile to your face. Fresh, fast, and delivered with love in Kigali.</p>
 </section>
 
 <h2 class="section-title">Our Sweet Menu</h2>
 <div class="grid" id="products"></div>
+
+<section class="visit-us">
+  <h2>📍 Visit Us</h2>
+  <div class="info-item"><strong>Location:</strong> Kigali, Rwanda (Exact address here)</div>
+  <div class="info-item"><strong>Hours:</strong> Mon-Sat: 9:00 AM - 8:00 PM</div>
+  <div class="info-item"><strong>Call/WhatsApp:</strong> +250 XXX XXX XXX</div>
+</section>
 
 <aside id="cart-panel">
   <button id="close-cart">×</button>
@@ -304,21 +344,23 @@
     <input type="text" id="customer-address" placeholder="e.g., Kimironko, near the market">
   </div>
   
-  <!-- GPS LOCATION SECTION -->
-  <div class="form-group" style="background: #f9f9f9; padding: 15px; border-radius: 12px; border: 1px dashed #ff8da1;">
-    <label style="color: #d64d67;">📍 Precise Delivery Pin</label>
-    <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Click below to grab your exact location.</p>
+  <!-- GPS LOCATION SECTION (AUTO COPY) -->
+  <div class="form-group" style="background: #fffafb; padding: 15px; border-radius: 12px; border: 1px solid #ffe0e6; margin-top: 15px;">
+    <label style="color: #d64d67; font-size: 0.95rem;">📍 Precise Delivery Pin</label>
+    <p style="font-size: 0.75rem; color: #888; margin-bottom: 10px;">Tap below to auto-copy your exact map location.</p>
     <button onclick="getLocation()" style="width: 100%; background: #fff; border: 1px solid #ff8da1; color: #d64d67; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 8px;">Get My GPS Link</button>
-    <input type="text" id="customer-gps" placeholder="Paste Google Maps link here">
+    <input type="text" id="customer-gps" placeholder="Map link will appear here...">
   </div>
 
-  <button id="checkout-btn">Checkout via WhatsApp</button>
+  <button id="checkout-btn">
+    <span>💬</span> Checkout via WhatsApp
+  </button>
 </aside>
 
 <footer>
   <h3>Craveret</h3>
   <p>Kigali, Rwanda · MTN MoMo & Airtel Money accepted</p>
-  <p style="margin-top: 15px; font-size: 0.8rem;">© 2026 Craveret. Made with love.</p>
+  <p style="margin-top: 10px; font-size: 0.75rem;">© 2026 Craveret. Made with love.</p>
 </footer>
 
 <script>
@@ -384,7 +426,7 @@ function renderCart() {
   cartCount.textContent = count;
 }
 
-// GPS Location Function
+// GPS Location Function (Auto-Copy)
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -392,8 +434,15 @@ function getLocation() {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
         const mapLink = `https://maps.google.com/?q=${lat},${lng}`;
+        
         document.getElementById("customer-gps").value = mapLink;
-        alert("GPS location captured! You can add more details in the address box.");
+        
+        navigator.clipboard.writeText(mapLink).then(() => {
+          alert("📍 Location captured and copied to clipboard!\n\nYour exact map link has been added to the box.");
+        }).catch(() => {
+          alert("📍 Location captured! The link is in the box.");
+        });
+        
       },
       (error) => {
         alert("Could not get location. Please paste a Google Maps link manually.");
@@ -436,7 +485,7 @@ document.getElementById("checkout-btn").onclick = () => {
     msg += `%0A*GPS Pin:* ${gpsLink}`;
   }
   
-  // YOUR WHATSAPP NUMBER IS ALREADY HERE
+  // YOUR WHATSAPP NUMBER
   const myNumber = "96892082437"; 
   
   window.open(`https://wa.me/${myNumber}?text=${msg}`, "_blank");
