@@ -3,68 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sweet Kigali — Candy Shop</title>
+<title>Emy's Candy — Sweet Moments Delivered</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+  
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: system-ui, sans-serif; background: #fff8f0; color: #3a2a1a; }
-  header { background: #e85d75; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
-  header h1 { font-size: 1.3rem; }
-  #cart-btn { background: #fff; color: #e85d75; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; }
-  .hero { text-align: center; padding: 48px 24px; background: linear-gradient(135deg, #ffe0e6, #fff8f0); }
-  .hero h2 { font-size: 2rem; margin-bottom: 8px; }
-  .hero p { color: #7a5a4a; margin-bottom: 16px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 32px 24px; max-width: 1100px; margin: 0 auto; }
-  .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; }
-  .card img { width: 100%; height: 160px; object-fit: cover; background: #f0e0d0; }
-  .card .info { padding: 12px; flex: 1; display: flex; flex-direction: column; }
-  .card h3 { font-size: 1rem; margin-bottom: 4px; }
-  .card .price { color: #e85d75; font-weight: bold; margin-bottom: 8px; }
-  .card .allergens { font-size: 0.75rem; color: #999; margin-bottom: 8px; }
-  .card button { margin-top: auto; background: #e85d75; color: #fff; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; }
-  .card button:hover { background: #d14a62; }
-  #cart-panel { position: fixed; right: 0; top: 0; height: 100%; width: 320px; background: #fff; box-shadow: -4px 0 16px rgba(0,0,0,0.15); transform: translateX(100%); transition: transform 0.3s; padding: 20px; overflow-y: auto; z-index: 20; }
+  body { font-family: 'Poppins', sans-serif; background: #fffcf9; color: #4a3b32; }
+  
+  /* Header */
+  header { background: #ff8da1; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  header h1 { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; letter-spacing: 1px; }
+  #cart-btn { background: #fff; color: #ff8da1; border: none; padding: 10px 20px; border-radius: 25px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: 0.2s; }
+  #cart-btn:hover { background: #ffe0e6; }
+
+  /* Hero Section */
+  .hero { text-align: center; padding: 80px 24px; background: linear-gradient(135deg, #ffe0e6, #fffcf9); position: relative; }
+  .hero h2 { font-family: 'Fredoka', sans-serif; font-size: 3rem; margin-bottom: 12px; color: #d64d67; }
+  .hero p { color: #7a5a4a; font-size: 1.1rem; max-width: 600px; margin: 0 auto 24px auto; }
+  
+  /* About Section */
+  .about { background: #fff; padding: 60px 24px; text-align: center; border-bottom: 2px dashed #ff8da1; }
+  .about h2 { font-family: 'Fredoka', sans-serif; color: #d64d67; margin-bottom: 16px; font-size: 2rem; }
+  .about p { max-width: 700px; margin: 0 auto; line-height: 1.6; color: #665; }
+
+  /* Product Grid */
+  .section-title { text-align: center; font-family: 'Fredoka', sans-serif; font-size: 2rem; color: #d64d67; margin-top: 40px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; padding: 32px 24px; max-width: 1100px; margin: 0 auto; }
+  .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 16px rgba(255, 141, 161, 0.15); display: flex; flex-direction: column; transition: transform 0.2s; border: 1px solid #ffe0e6; }
+  .card:hover { transform: translateY(-4px); }
+  .card img { width: 100%; height: 200px; object-fit: cover; background: #f9f9f9; }
+  .card .info { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+  .card h3 { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; margin-bottom: 4px; color: #4a3b32; }
+  .card .price { color: #ff8da1; font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; }
+  .card .allergens { font-size: 0.8rem; color: #999; margin-bottom: 12px; }
+  .card button { margin-top: auto; background: #ff8da1; color: #fff; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: 0.2s; }
+  .card button:hover { background: #d64d67; }
+
+  /* Cart Panel */
+  #cart-panel { position: fixed; right: 0; top: 0; height: 100%; width: 350px; max-width: 100%; background: #fff; box-shadow: -4px 0 24px rgba(0,0,0,0.15); transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 24px; overflow-y: auto; z-index: 20; display: flex; flex-direction: column; }
   #cart-panel.open { transform: translateX(0); }
-  #cart-panel h2 { margin-bottom: 16px; }
-  .cart-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
-  .cart-item button { background: none; border: none; color: #e85d75; cursor: pointer; font-weight: bold; }
-  #cart-total { margin: 16px 0; font-weight: bold; font-size: 1.1rem; }
-  #checkout-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-  #close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; float: right; }
-  footer { text-align: center; padding: 24px; color: #999; font-size: 0.85rem; }
+  #cart-panel h2 { font-family: 'Fredoka', sans-serif; margin-bottom: 16px; color: #d64d67; }
+  #close-cart { background: none; border: none; font-size: 2rem; cursor: pointer; position: absolute; top: 16px; right: 16px; color: #999; }
+  .cart-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+  .cart-item button { background: none; border: none; color: #ff8da1; cursor: pointer; font-weight: 600; padding: 0 8px; }
+  #cart-total { margin: 24px 0; font-weight: 600; font-size: 1.3rem; color: #d64d67; }
+  
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-size: 0.9rem; margin-bottom: 4px; color: #665; }
+  .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Poppins', sans-serif; }
+  
+  #checkout-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 16px; border-radius: 12px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
+  #checkout-btn:hover { background: #1da851; }
+
+  footer { text-align: center; padding: 40px 24px; background: #4a3b32; color: #fff; margin-top: 40px; }
+  footer p { opacity: 0.8; font-size: 0.9rem; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🍬 Sweet Kigali</h1>
+  <h1>🍬 Emy's Candy</h1>
   <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
 </header>
 
 <section class="hero">
-  <h2>Sweet moments, delivered in Kigali</h2>
-  <p>Pay with MTN MoMo or Airtel Money · Delivery 24–48 hrs</p>
+  <h2>Sweetness Delivered in Kigali</h2>
+  <p>Your daily dose of happiness is just a click away. Premium chocolates, gummies, and local sweets delivered straight to your door.</p>
 </section>
 
+<section class="about">
+  <h2>About Emy's Candy</h2>
+  <p>Welcome to Emy's Candy! We are a passionate, family-run candy shop based in Kigali. We believe that every day deserves a little sweetness. Whether you are treating yourself, surprising a friend, or celebrating a special occasion, we handpick the best treats to bring a smile to your face.</p>
+</section>
+
+<h2 class="section-title">Our Menu</h2>
 <div class="grid" id="products"></div>
 
 <aside id="cart-panel">
   <button id="close-cart">×</button>
-  <h2>Your Cart</h2>
-  <div id="cart-items"></div>
+  <h2>Your Sweet Cart</h2>
+  <div id="cart-items" style="flex: 1;"></div>
   <div id="cart-total">Total: 0 RWF</div>
+  
+  <div class="form-group">
+    <label>Your Name</label>
+    <input type="text" id="customer-name" placeholder="e.g., Amina">
+  </div>
+  <div class="form-group">
+    <label>Delivery Location (Kigali)</label>
+    <input type="text" id="customer-address" placeholder="e.g., Kimironko, near the market">
+  </div>
+
   <button id="checkout-btn">Checkout via WhatsApp</button>
 </aside>
 
-<footer>© 2026 Sweet Kigali · Kigali, Rwanda · MTN MoMo & Airtel Money accepted</footer>
+<footer>
+  <h3>Emy's Candy</h3>
+  <p>Kigali, Rwanda · MTN MoMo & Airtel Money accepted</p>
+  <p style="margin-top: 12px; font-size: 0.8rem;">© 2026 Emy's Candy. Made with love.</p>
+</footer>
 
 <script>
+// Here is where you can change the product names, prices, and images!
+// Just replace the placeholder image links with real image links later.
 const products = [
-  { id: 1, name: "Milk Chocolate Bar", nameRw: "Shokora y'amata", price: 2500, allergens: "Milk, Soy", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Chocolate" },
-  { id: 2, name: "Fruit Gummies", nameRw: "Gummies z'imbuto", price: 1500, allergens: "None", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Gummies" },
-  { id: 3, name: "Local Honey Sweets", nameRw: "Ibinyampeke by'ubuki", price: 1000, allergens: "None", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Honey+Sweets" },
-  { id: 4, name: "Lollipop Pack (10)", nameRw: "Lollipop 10", price: 2000, allergens: "None", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Lollipops" },
-  { id: 5, name: "Dark Chocolate 70%", nameRw: "Shokora y'umukara 70%", price: 3500, allergens: "Soy", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Dark+Choc" },
-  { id: 6, name: "Gift Box Assorted", nameRw: "Agasanduku k'impano", price: 8000, allergens: "Milk, Nuts", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Gift+Box" }
+  { id: 1, name: "Milk Chocolate Bar", price: 2500, allergens: "Milk, Soy", img: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=400&q=80" },
+  { id: 2, name: "Fruit Gummies", price: 1500, allergens: "None", img: "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=400&q=80" },
+  { id: 3, name: "Local Honey Sweets", price: 1000, allergens: "None", img: "https://images.unsplash.com/photo-1587049352847-8d4e8b2a5e28?auto=format&fit=crop&w=400&q=80" },
+  { id: 4, name: "Lollipop Pack (10)", price: 2000, allergens: "None", img: "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=400&q=80" },
+  { id: 5, name: "Dark Chocolate 70%", price: 3500, allergens: "Soy", img: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?auto=format&fit=crop&w=400&q=80" },
+  { id: 6, name: "Emy's Gift Box", price: 8000, allergens: "Milk, Nuts", img: "https://images.unsplash.com/photo-1573851552153-816785fecb2d?auto=format&fit=crop&w=400&q=80" }
 ];
 
 const cart = {};
@@ -110,7 +158,7 @@ function renderCart() {
       <span>${p.name} × ${qty}</span>
       <span>${(p.price * qty).toLocaleString()} RWF <button onclick="removeFromCart(${id})">✕</button></span>
     </div>`;
-  }).join("") || "<p style='color:#999'>Cart is empty</p>";
+  }).join("") || "<p style='color:#999; text-align:center; margin-top:20px;'>Your cart is empty.</p>";
   cartTotal.textContent = `Total: ${total.toLocaleString()} RWF`;
   cartCount.textContent = count;
 }
@@ -119,16 +167,31 @@ document.getElementById("cart-btn").onclick = () => cartPanel.classList.toggle("
 document.getElementById("close-cart").onclick = () => cartPanel.classList.remove("open");
 
 document.getElementById("checkout-btn").onclick = () => {
-  if (!Object.keys(cart).length) return alert("Your cart is empty.");
-  let msg = "Hello! I'd like to order:%0A";
+  if (!Object.keys(cart).length) return alert("Your cart is empty. Add some sweets first!");
+  
+  const name = document.getElementById("customer-name").value;
+  const address = document.getElementById("customer-address").value;
+  
+  if (!name || !address) {
+    return alert("Please enter your name and delivery location so we can find you!");
+  }
+
+  let msg = "Hello Emy's Candy! I'd like to order:%0A%0A";
   let total = 0;
   for (const [id, qty] of Object.entries(cart)) {
     const p = products.find(x => x.id == id);
     total += p.price * qty;
-    msg += `- ${p.name} × ${qty} = ${(p.price*qty).toLocaleString()} RWF%0A`;
+    msg += `• ${p.name} x ${qty} = ${(p.price*qty).toLocaleString()} RWF%0A`;
   }
-  msg += `%0ATotal: ${total.toLocaleString()} RWF%0A%0AMy delivery address: `;
-  window.open(`https://wa.me/96893593042?text=${msg}`, "_blank");
+  
+  msg += `%0A*Total:* ${total.toLocaleString()} RWF%0A`;
+  msg += `%0A*Name:* ${name}`;
+  msg += `%0A*Address:* ${address}`;
+  
+  // REMEMBER TO PUT THE WHATSAPP NUMBER HERE
+  const myNumber = "96893593042"; 
+  
+  window.open(`https://wa.me/${myNumber}?text=${msg}`, "_blank");
 };
 
 renderProducts();
