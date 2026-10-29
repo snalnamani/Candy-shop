@@ -3,66 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emy's Candy — Sweet Moments Delivered</title>
+<title>Craveret — Sweet Moments Delivered</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
-  
+  /* --- GLOBAL STYLES --- */
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Poppins', sans-serif; background: #fffcf9; color: #4a3b32; }
+  body { 
+    font-family: 'Poppins', sans-serif; 
+    background-color: #fffafb; 
+    color: #4a3b32; 
+    line-height: 1.6;
+  }
   
-  /* Header */
-  header { background: #ff8da1; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-  header h1 { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; letter-spacing: 1px; }
-  #cart-btn { background: #fff; color: #ff8da1; border: none; padding: 10px 20px; border-radius: 25px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: 0.2s; }
-  #cart-btn:hover { background: #ffe0e6; }
+  /* --- HEADER --- */
+  header { 
+    background: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(10px);
+    padding: 15px 5%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    box-shadow: 0 2px 20px rgba(255, 141, 161, 0.15); 
+  }
+  header h1 { 
+    font-family: 'Fredoka', sans-serif; 
+    font-size: 1.8rem; 
+    color: #e56b81; 
+    letter-spacing: 1px;
+  }
+  #cart-btn { 
+    background: #ffe0e6; 
+    color: #d64d67; 
+    border: none; 
+    padding: 10px 22px; 
+    border-radius: 30px; 
+    font-weight: 600; 
+    font-size: 1rem; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+  }
+  #cart-btn:hover { background: #ffc2cd; transform: scale(1.05); }
 
-  /* Hero Section */
-  .hero { text-align: center; padding: 80px 24px; background: linear-gradient(135deg, #ffe0e6, #fffcf9); position: relative; }
-  .hero h2 { font-family: 'Fredoka', sans-serif; font-size: 3rem; margin-bottom: 12px; color: #d64d67; }
-  .hero p { color: #7a5a4a; font-size: 1.1rem; max-width: 600px; margin: 0 auto 24px auto; }
-  
-  /* About Section */
-  .about { background: #fff; padding: 60px 24px; text-align: center; border-bottom: 2px dashed #ff8da1; }
-  .about h2 { font-family: 'Fredoka', sans-serif; color: #d64d67; margin-bottom: 16px; font-size: 2rem; }
-  .about p { max-width: 700px; margin: 0 auto; line-height: 1.6; color: #665; }
+  /* --- HERO SECTION --- */
+  .hero { 
+    text-align: center; 
+    padding: 100px 20px; 
+    background: linear-gradient(135deg, #ffe0e6 0%, #fffafb 100%); 
+    border-bottom-left-radius: 50% 20px;
+    border-bottom-right-radius: 50% 20px;
+  }
+  .hero h2 { 
+    font-family: 'Fredoka', sans-serif; 
+    font-size: 3.5rem; 
+    margin-bottom: 15px; 
+    color: #d64d67; 
+    line-height: 1.2;
+  }
+  .hero p { 
+    color: #7a5a4a; 
+    font-size: 1.2rem; 
+    max-width: 600px; 
+    margin: 0 auto 30px auto; 
+  }
 
-  /* Product Grid */
-  .section-title { text-align: center; font-family: 'Fredoka', sans-serif; font-size: 2rem; color: #d64d67; margin-top: 40px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; padding: 32px 24px; max-width: 1100px; margin: 0 auto; }
-  .card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 16px rgba(255, 141, 161, 0.15); display: flex; flex-direction: column; transition: transform 0.2s; border: 1px solid #ffe0e6; }
-  .card:hover { transform: translateY(-4px); }
-  .card img { width: 100%; height: 200px; object-fit: cover; background: #f9f9f9; }
-  .card .info { padding: 16px; flex: 1; display: flex; flex-direction: column; }
-  .card h3 { font-family: 'Fredoka', sans-serif; font-size: 1.2rem; margin-bottom: 4px; color: #4a3b32; }
-  .card .price { color: #ff8da1; font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; }
-  .card .allergens { font-size: 0.8rem; color: #999; margin-bottom: 12px; }
-  .card button { margin-top: auto; background: #ff8da1; color: #fff; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: 0.2s; }
+  /* --- ABOUT SECTION --- */
+  .about { 
+    background: #fff; 
+    padding: 80px 20px; 
+    text-align: center; 
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .about h2 { 
+    font-family: 'Fredoka', sans-serif; 
+    color: #e56b81; 
+    margin-bottom: 20px; 
+    font-size: 2.5rem; 
+  }
+  .about p { 
+    font-size: 1.1rem; 
+    color: #665; 
+  }
+
+  /* --- PRODUCT GRID --- */
+  .section-title { 
+    text-align: center; 
+    font-family: 'Fredoka', sans-serif; 
+    font-size: 2.5rem; 
+    color: #d64d67; 
+    margin-top: 40px; 
+  }
+  .grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 30px; 
+    padding: 40px 5%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+  }
+  .card { 
+    background: #fff; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    display: flex; 
+    flex-direction: column; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    border: 1px solid #f0f0f0;
+  }
+  .card:hover { 
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 40px rgba(255, 141, 161, 0.2);
+  }
+  .card img { 
+    width: 100%; 
+    height: 220px; 
+    object-fit: cover; 
+    background: #f9f9f9; 
+  }
+  .card .info { 
+    padding: 20px; 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+  }
+  .card h3 { 
+    font-family: 'Fredoka', sans-serif; 
+    font-size: 1.4rem; 
+    margin-bottom: 5px; 
+    color: #4a3b32; 
+  }
+  .card .price { 
+    color: #e56b81; 
+    font-weight: 600; 
+    font-size: 1.2rem; 
+    margin-bottom: 10px; 
+  }
+  .card .allergens { 
+    font-size: 0.85rem; 
+    color: #999; 
+    margin-bottom: 20px; 
+  }
+  .card button { 
+    margin-top: auto; 
+    background: #ff8da1; 
+    color: #fff; 
+    border: none; 
+    padding: 14px; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    font-weight: 600; 
+    font-size: 1.05rem; 
+    transition: background 0.3s ease; 
+  }
   .card button:hover { background: #d64d67; }
 
-  /* Cart Panel */
-  #cart-panel { position: fixed; right: 0; top: 0; height: 100%; width: 350px; max-width: 100%; background: #fff; box-shadow: -4px 0 24px rgba(0,0,0,0.15); transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 24px; overflow-y: auto; z-index: 20; display: flex; flex-direction: column; }
+  /* --- CART PANEL --- */
+  #cart-panel { 
+    position: fixed; 
+    right: 0; 
+    top: 0; 
+    height: 100%; 
+    width: 400px; 
+    max-width: 100%; 
+    background: #fff; 
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+    transform: translateX(100%); 
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    padding: 30px; 
+    overflow-y: auto; 
+    z-index: 200; 
+    display: flex; 
+    flex-direction: column; 
+  }
   #cart-panel.open { transform: translateX(0); }
-  #cart-panel h2 { font-family: 'Fredoka', sans-serif; margin-bottom: 16px; color: #d64d67; }
-  #close-cart { background: none; border: none; font-size: 2rem; cursor: pointer; position: absolute; top: 16px; right: 16px; color: #999; }
-  .cart-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
-  .cart-item button { background: none; border: none; color: #ff8da1; cursor: pointer; font-weight: 600; padding: 0 8px; }
-  #cart-total { margin: 24px 0; font-weight: 600; font-size: 1.3rem; color: #d64d67; }
+  #cart-panel h2 { 
+    font-family: 'Fredoka', sans-serif; 
+    margin-bottom: 20px; 
+    color: #d64d67; 
+    font-size: 1.8rem;
+  }
+  #close-cart { 
+    background: none; 
+    border: none; 
+    font-size: 2rem; 
+    cursor: pointer; 
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
+    color: #999; 
+    transition: color 0.2s;
+  }
+  #close-cart:hover { color: #d64d67; }
   
-  .form-group { margin-bottom: 12px; }
-  .form-group label { display: block; font-size: 0.9rem; margin-bottom: 4px; color: #665; }
-  .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Poppins', sans-serif; }
+  .cart-item { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 15px 0; 
+    border-bottom: 1px solid #eee; 
+    font-size: 1rem; 
+  }
+  .cart-item button { 
+    background: none; 
+    border: none; 
+    color: #ff8da1; 
+    cursor: pointer; 
+    font-weight: 600; 
+    padding: 0 10px; 
+  }
+  #cart-total { 
+    margin: 25px 0; 
+    font-weight: 600; 
+    font-size: 1.5rem; 
+    color: #d64d67; 
+    text-align: right;
+  }
   
-  #checkout-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 16px; border-radius: 12px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
+  /* --- FORM FIELDS --- */
+  .form-group { margin-bottom: 15px; }
+  .form-group label { 
+    display: block; 
+    font-size: 0.9rem; 
+    margin-bottom: 5px; 
+    color: #665; 
+    font-weight: 600;
+  }
+  .form-group input { 
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1rem;
+    transition: border 0.3s;
+  }
+  .form-group input:focus { outline: none; border-color: #ff8da1; }
+  
+  #checkout-btn { 
+    width: 100%; 
+    background: #25D366; 
+    color: #fff; 
+    border: none; 
+    padding: 18px; 
+    border-radius: 12px; 
+    font-weight: 600; 
+    font-size: 1.1rem; 
+    cursor: pointer; 
+    transition: background 0.3s ease; 
+    margin-top: 10px;
+  }
   #checkout-btn:hover { background: #1da851; }
 
-  footer { text-align: center; padding: 40px 24px; background: #4a3b32; color: #fff; margin-top: 40px; }
-  footer p { opacity: 0.8; font-size: 0.9rem; }
+  /* --- FOOTER --- */
+  footer { 
+    text-align: center; 
+    padding: 60px 20px; 
+    background: #4a3b32; 
+    color: #fff; 
+    margin-top: 80px; 
+  }
+  footer h3 { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; margin-bottom: 10px; }
+  footer p { opacity: 0.8; font-size: 0.9rem; margin-bottom: 5px; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🍬 Emy's Candy</h1>
+  <h1>🍬 Craveret</h1>
   <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
 </header>
 
@@ -72,11 +282,11 @@
 </section>
 
 <section class="about">
-  <h2>About Emy's Candy</h2>
-  <p>Welcome to Emy's Candy! We are a passionate, family-run candy shop based in Kigali. We believe that every day deserves a little sweetness. Whether you are treating yourself, surprising a friend, or celebrating a special occasion, we handpick the best treats to bring a smile to your face.</p>
+  <h2>About Craveret</h2>
+  <p>Welcome to Craveret! We are a passionate, family-run candy shop based in Kigali. We believe that every day deserves a little sweetness. Whether you are treating yourself, surprising a friend, or celebrating a special occasion, we handpick the best treats to bring a smile to your face.</p>
 </section>
 
-<h2 class="section-title">Our Menu</h2>
+<h2 class="section-title">Our Sweet Menu</h2>
 <div class="grid" id="products"></div>
 
 <aside id="cart-panel">
@@ -90,29 +300,36 @@
     <input type="text" id="customer-name" placeholder="e.g., Amina">
   </div>
   <div class="form-group">
-    <label>Delivery Location (Kigali)</label>
+    <label>Delivery Location (Area/Street)</label>
     <input type="text" id="customer-address" placeholder="e.g., Kimironko, near the market">
+  </div>
+  
+  <!-- GPS LOCATION SECTION -->
+  <div class="form-group" style="background: #f9f9f9; padding: 15px; border-radius: 12px; border: 1px dashed #ff8da1;">
+    <label style="color: #d64d67;">📍 Precise Delivery Pin</label>
+    <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Click below to grab your exact location.</p>
+    <button onclick="getLocation()" style="width: 100%; background: #fff; border: 1px solid #ff8da1; color: #d64d67; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 8px;">Get My GPS Link</button>
+    <input type="text" id="customer-gps" placeholder="Paste Google Maps link here">
   </div>
 
   <button id="checkout-btn">Checkout via WhatsApp</button>
 </aside>
 
 <footer>
-  <h3>Emy's Candy</h3>
+  <h3>Craveret</h3>
   <p>Kigali, Rwanda · MTN MoMo & Airtel Money accepted</p>
-  <p style="margin-top: 12px; font-size: 0.8rem;">© 2026 Emy's Candy. Made with love.</p>
+  <p style="margin-top: 15px; font-size: 0.8rem;">© 2026 Craveret. Made with love.</p>
 </footer>
 
 <script>
-// Here is where you can change the product names, prices, and images!
-// Just replace the placeholder image links with real image links later.
+// YOU CAN CHANGE THE PRODUCTS, PRICES, AND IMAGES HERE
 const products = [
   { id: 1, name: "Milk Chocolate Bar", price: 2500, allergens: "Milk, Soy", img: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=400&q=80" },
   { id: 2, name: "Fruit Gummies", price: 1500, allergens: "None", img: "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=400&q=80" },
   { id: 3, name: "Local Honey Sweets", price: 1000, allergens: "None", img: "https://images.unsplash.com/photo-1587049352847-8d4e8b2a5e28?auto=format&fit=crop&w=400&q=80" },
   { id: 4, name: "Lollipop Pack (10)", price: 2000, allergens: "None", img: "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=400&q=80" },
   { id: 5, name: "Dark Chocolate 70%", price: 3500, allergens: "Soy", img: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?auto=format&fit=crop&w=400&q=80" },
-  { id: 6, name: "Emy's Gift Box", price: 8000, allergens: "Milk, Nuts", img: "https://images.unsplash.com/photo-1573851552153-816785fecb2d?auto=format&fit=crop&w=400&q=80" }
+  { id: 6, name: "Craveret Gift Box", price: 8000, allergens: "Milk, Nuts", img: "https://images.unsplash.com/photo-1573851552153-816785fecb2d?auto=format&fit=crop&w=400&q=80" }
 ];
 
 const cart = {};
@@ -122,6 +339,7 @@ const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 const cartCount = document.getElementById("cart-count");
 
+// Render Products
 function renderProducts() {
   grid.innerHTML = products.map(p => `
     <div class="card">
@@ -136,17 +354,20 @@ function renderProducts() {
   `).join("");
 }
 
+// Add to Cart
 function addToCart(id) {
   cart[id] = (cart[id] || 0) + 1;
   renderCart();
   cartPanel.classList.add("open");
 }
 
+// Remove from Cart
 function removeFromCart(id) {
   delete cart[id];
   renderCart();
 }
 
+// Render Cart
 function renderCart() {
   const entries = Object.entries(cart);
   let total = 0, count = 0;
@@ -155,28 +376,51 @@ function renderCart() {
     total += p.price * qty;
     count += qty;
     return `<div class="cart-item">
-      <span>${p.name} × ${qty}</span>
+      <span>${p.name} <strong>× ${qty}</strong></span>
       <span>${(p.price * qty).toLocaleString()} RWF <button onclick="removeFromCart(${id})">✕</button></span>
     </div>`;
-  }).join("") || "<p style='color:#999; text-align:center; margin-top:20px;'>Your cart is empty.</p>";
+  }).join("") || "<p style='color:#999; text-align:center; margin-top:20px;'>Your cart is empty. Add some sweets!</p>";
   cartTotal.textContent = `Total: ${total.toLocaleString()} RWF`;
   cartCount.textContent = count;
 }
 
+// GPS Location Function
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const mapLink = `https://maps.google.com/?q=${lat},${lng}`;
+        document.getElementById("customer-gps").value = mapLink;
+        alert("GPS location captured! You can add more details in the address box.");
+      },
+      (error) => {
+        alert("Could not get location. Please paste a Google Maps link manually.");
+      }
+    );
+  } else {
+    alert("Your browser doesn't support GPS. Please paste a Google Maps link manually.");
+  }
+}
+
+// UI Toggles
 document.getElementById("cart-btn").onclick = () => cartPanel.classList.toggle("open");
 document.getElementById("close-cart").onclick = () => cartPanel.classList.remove("open");
 
+// Checkout to WhatsApp
 document.getElementById("checkout-btn").onclick = () => {
   if (!Object.keys(cart).length) return alert("Your cart is empty. Add some sweets first!");
   
   const name = document.getElementById("customer-name").value;
   const address = document.getElementById("customer-address").value;
+  const gpsLink = document.getElementById("customer-gps").value;
   
   if (!name || !address) {
     return alert("Please enter your name and delivery location so we can find you!");
   }
 
-  let msg = "Hello Emy's Candy! I'd like to order:%0A%0A";
+  let msg = "Hello Craveret! I'd like to order:%0A%0A";
   let total = 0;
   for (const [id, qty] of Object.entries(cart)) {
     const p = products.find(x => x.id == id);
@@ -188,12 +432,17 @@ document.getElementById("checkout-btn").onclick = () => {
   msg += `%0A*Name:* ${name}`;
   msg += `%0A*Address:* ${address}`;
   
-  // REMEMBER TO PUT THE WHATSAPP NUMBER HERE
+  if (gpsLink) {
+    msg += `%0A*GPS Pin:* ${gpsLink}`;
+  }
+  
+  // YOUR WHATSAPP NUMBER IS ALREADY HERE
   const myNumber = "96892082437"; 
   
   window.open(`https://wa.me/${myNumber}?text=${msg}`, "_blank");
 };
 
+// Initialize
 renderProducts();
 renderCart();
 </script>
