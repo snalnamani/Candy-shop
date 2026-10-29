@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Kigali — Candy Shop</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #fff8f0; color: #3a2a1a; }
+  header { background: #e85d75; color: #fff; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+  header h1 { font-size: 1.3rem; }
+  #cart-btn { background: #fff; color: #e85d75; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+  .hero { text-align: center; padding: 48px 24px; background: linear-gradient(135deg, #ffe0e6, #fff8f0); }
+  .hero h2 { font-size: 2rem; margin-bottom: 8px; }
+  .hero p { color: #7a5a4a; margin-bottom: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 32px 24px; max-width: 1100px; margin: 0 auto; }
+  .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; }
+  .card img { width: 100%; height: 160px; object-fit: cover; background: #f0e0d0; }
+  .card .info { padding: 12px; flex: 1; display: flex; flex-direction: column; }
+  .card h3 { font-size: 1rem; margin-bottom: 4px; }
+  .card .price { color: #e85d75; font-weight: bold; margin-bottom: 8px; }
+  .card .allergens { font-size: 0.75rem; color: #999; margin-bottom: 8px; }
+  .card button { margin-top: auto; background: #e85d75; color: #fff; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+  .card button:hover { background: #d14a62; }
+  #cart-panel { position: fixed; right: 0; top: 0; height: 100%; width: 320px; background: #fff; box-shadow: -4px 0 16px rgba(0,0,0,0.15); transform: translateX(100%); transition: transform 0.3s; padding: 20px; overflow-y: auto; z-index: 20; }
+  #cart-panel.open { transform: translateX(0); }
+  #cart-panel h2 { margin-bottom: 16px; }
+  .cart-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+  .cart-item button { background: none; border: none; color: #e85d75; cursor: pointer; font-weight: bold; }
+  #cart-total { margin: 16px 0; font-weight: bold; font-size: 1.1rem; }
+  #checkout-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+  #close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; float: right; }
+  footer { text-align: center; padding: 24px; color: #999; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🍬 Sweet Kigali</h1>
+  <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+</header>
+
+<section class="hero">
+  <h2>Sweet moments, delivered in Kigali</h2>
+  <p>Pay with MTN MoMo or Airtel Money · Delivery 24–48 hrs</p>
+</section>
+
+<div class="grid" id="products"></div>
+
+<aside id="cart-panel">
+  <button id="close-cart">×</button>
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <div id="cart-total">Total: 0 RWF</div>
+  <button id="checkout-btn">Checkout via WhatsApp</button>
+</aside>
+
+<footer>© 2026 Sweet Kigali · Kigali, Rwanda · MTN MoMo & Airtel Money accepted</footer>
+
+<script>
+const products = [
+  { id: 1, name: "Milk Chocolate Bar", nameRw: "Shokora y'amata", price: 2500, allergens: "Milk, Soy", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Chocolate" },
+  { id: 2, name: "Fruit Gummies", nameRw: "Gummies z'imbuto", price: 1500, allergens: "None", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Gummies" },
+  { id: 3, name: "Local Honey Sweets", nameRw: "Ibinyampeke by'ubuki", price: 1000, allergens: "None", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Honey+Sweets" },
+  { id: 4, name: "Lollipop Pack (10)", nameRw: "Lollipop 10", price: 2000, allergens: "None", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Lollipops" },
+  { id: 5, name: "Dark Chocolate 70%", nameRw: "Shokora y'umukara 70%", price: 3500, allergens: "Soy", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Dark+Choc" },
+  { id: 6, name: "Gift Box Assorted", nameRw: "Agasanduku k'impano", price: 8000, allergens: "Milk, Nuts", img: "https://via.placeholder.com/400x300/ffe0e6/e85d75?text=Gift+Box" }
+];
+
+const cart = {};
+const grid = document.getElementById("products");
+const cartPanel = document.getElementById("cart-panel");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const cartCount = document.getElementById("cart-count");
+
+function renderProducts() {
+  grid.innerHTML = products.map(p => `
+    <div class="card">
+      <img src="${p.img}" alt="${p.name}">
+      <div class="info">
+        <h3>${p.name}</h3>
+        <div class="price">${p.price.toLocaleString()} RWF</div>
+        <div class="allergens">Allergens: ${p.allergens}</div>
+        <button onclick="addToCart(${p.id})">Add to Cart</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
+  cartPanel.classList.add("open");
+}
+
+function removeFromCart(id) {
+  delete cart[id];
+  renderCart();
+}
+
+function renderCart() {
+  const entries = Object.entries(cart);
+  let total = 0, count = 0;
+  cartItems.innerHTML = entries.map(([id, qty]) => {
+    const p = products.find(x => x.id == id);
+    total += p.price * qty;
+    count += qty;
+    return `<div class="cart-item">
+      <span>${p.name} × ${qty}</span>
+      <span>${(p.price * qty).toLocaleString()} RWF <button onclick="removeFromCart(${id})">✕</button></span>
+    </div>`;
+  }).join("") || "<p style='color:#999'>Cart is empty</p>";
+  cartTotal.textContent = `Total: ${total.toLocaleString()} RWF`;
+  cartCount.textContent = count;
+}
+
+document.getElementById("cart-btn").onclick = () => cartPanel.classList.toggle("open");
+document.getElementById("close-cart").onclick = () => cartPanel.classList.remove("open");
+
+document.getElementById("checkout-btn").onclick = () => {
+  if (!Object.keys(cart).length) return alert("Your cart is empty.");
+  let msg = "Hello! I'd like to order:%0A";
+  let total = 0;
+  for (const [id, qty] of Object.entries(cart)) {
+    const p = products.find(x => x.id == id);
+    total += p.price * qty;
+    msg += `- ${p.name} × ${qty} = ${(p.price*qty).toLocaleString()} RWF%0A`;
+  }
+  msg += `%0ATotal: ${total.toLocaleString()} RWF%0A%0AMy delivery address: `;
+  window.open(`https://wa.me/250XXXXXXXXX?text=${msg}`, "_blank");
+};
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
