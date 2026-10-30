@@ -3,304 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Craveret — Sweet Moments Delivered</title>
+<title>Craveret — Sweet Moments Delivered in Oman</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  /* --- GLOBAL STYLES & APP FEEL --- */
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body { 
-    font-family: 'Poppins', sans-serif; 
-    background-color: #fffafb; 
-    color: #4a3b32; 
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+  body { font-family: 'Poppins', sans-serif; background-color: #fffafb; color: #4a3b32; line-height: 1.6; overflow-x: hidden; }
   
-  /* --- HEADER (STICKY APP BAR) --- */
-  header { 
-    background: rgba(255, 255, 255, 0.95); 
-    backdrop-filter: blur(10px);
-    padding: 15px 5%; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    position: sticky; 
-    top: 0; 
-    z-index: 100; 
-    box-shadow: 0 2px 20px rgba(255, 141, 161, 0.15); 
-  }
-  header h1 { 
-    font-family: 'Fredoka', sans-serif; 
-    font-size: 1.8rem; 
-    color: #e56b81; 
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  #cart-btn { 
-    background: #ffe0e6; 
-    color: #d64d67; 
-    border: none; 
-    padding: 10px 22px; 
-    border-radius: 30px; 
-    font-weight: 600; 
-    font-size: 1rem; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  #cart-btn:active { transform: scale(0.95); }
+  header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(255, 141, 161, 0.15); }
+  header h1 { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: #e56b81; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+  #cart-btn { background: #ffe0e6; color: #d64d67; border: none; padding: 10px 22px; border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+  
+  .hero { text-align: center; padding: 80px 20px 100px; background: linear-gradient(135deg, #ffe0e6 0%, #fffafb 100%); border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; }
+  .hero h2 { font-family: 'Fredoka', sans-serif; font-size: 2.8rem; margin-bottom: 15px; color: #d64d67; line-height: 1.1; }
+  .hero p { color: #7a5a4a; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
-  /* --- HERO SECTION --- */
-  .hero { 
-    text-align: center; 
-    padding: 80px 20px 100px; 
-    background: linear-gradient(135deg, #ffe0e6 0%, #fffafb 100%); 
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    position: relative;
-  }
-  .hero h2 { 
-    font-family: 'Fredoka', sans-serif; 
-    font-size: 2.8rem; 
-    margin-bottom: 15px; 
-    color: #d64d67; 
-    line-height: 1.1;
-  }
-  .hero p { 
-    color: #7a5a4a; 
-    font-size: 1.1rem; 
-    max-width: 600px; 
-    margin: 0 auto; 
-  }
-
-  /* --- ABOUT SECTION --- */
-  .about { 
-    background: #fff; 
-    padding: 60px 20px; 
-    text-align: center; 
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .about h2 { 
-    font-family: 'Fredoka', sans-serif; 
-    color: #e56b81; 
-    margin-bottom: 15px; 
-    font-size: 2.2rem; 
-  }
+  .about { background: #fff; padding: 60px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
+  .about h2 { font-family: 'Fredoka', sans-serif; color: #e56b81; margin-bottom: 15px; font-size: 2.2rem; }
   .about p { font-size: 1.05rem; color: #665; }
 
-  /* --- PRODUCT GRID (APP CARDS) --- */
-  .section-title { 
-    text-align: center; 
-    font-family: 'Fredoka', sans-serif; 
-    font-size: 2.2rem; 
-    color: #d64d67; 
-    margin-top: 40px; 
-  }
-  .grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-    gap: 25px; 
-    padding: 30px 5%; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-  }
-  .card { 
-    background: #fff; 
-    border-radius: 24px; 
-    overflow: hidden; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-    display: flex; 
-    flex-direction: column; 
-    transition: transform 0.2s ease; 
-    border: 1px solid #f0f0f0;
-  }
-  .card:active { transform: scale(0.98); }
-  .card img { 
-    width: 100%; 
-    height: 220px; 
-    object-fit: cover; 
-    background: #f9f9f9; 
-  }
-  .card .info { 
-    padding: 20px; 
-    flex: 1; 
-    display: flex; 
-    flex-direction: column; 
-  }
-  .card h3 { 
-    font-family: 'Fredoka', sans-serif; 
-    font-size: 1.3rem; 
-    margin-bottom: 4px; 
-    color: #4a3b32; 
-  }
-  .card .price { 
-    color: #e56b81; 
-    font-weight: 600; 
-    font-size: 1.1rem; 
-    margin-bottom: 8px; 
-  }
-  .card .allergens { 
-    font-size: 0.8rem; 
-    color: #999; 
-    margin-bottom: 15px; 
-  }
-  .card button { 
-    margin-top: auto; 
-    background: #ff8da1; 
-    color: #fff; 
-    border: none; 
-    padding: 12px; 
-    border-radius: 12px; 
-    cursor: pointer; 
-    font-weight: 600; 
-    font-size: 1rem; 
-    transition: background 0.3s ease; 
-  }
+  .section-title { text-align: center; font-family: 'Fredoka', sans-serif; font-size: 2.2rem; color: #d64d67; margin-top: 40px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 30px 5%; max-width: 1200px; margin: 0 auto; }
+  .card { background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.2s ease; border: 1px solid #f0f0f0; }
+  .card img { width: 100%; height: 220px; object-fit: cover; background: #f9f9f9; }
+  .card .info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+  .card h3 { font-family: 'Fredoka', sans-serif; font-size: 1.3rem; margin-bottom: 4px; color: #4a3b32; }
+  .card .price { color: #e56b81; font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; }
+  .card .allergens { font-size: 0.8rem; color: #999; margin-bottom: 15px; }
+  .card button { margin-top: auto; background: #ff8da1; color: #fff; border: none; padding: 12px; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: background 0.3s ease; }
   .card button:active { background: #d64d67; }
 
-  /* --- VISIT US SECTION --- */
-  .visit-us {
-    background: #ffe0e6;
-    padding: 60px 20px;
-    text-align: center;
-    border-radius: 40px;
-    margin: 40px 5%;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .visit-us h2 {
-    font-family: 'Fredoka', sans-serif;
-    color: #d64d67;
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-  }
-  .visit-us .info-item {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    color: #4a3b32;
-    font-weight: 500;
-  }
+  .visit-us { background: #ffe0e6; padding: 60px 20px; text-align: center; border-radius: 40px; margin: 40px 5%; max-width: 800px; margin-left: auto; margin-right: auto; }
+  .visit-us h2 { font-family: 'Fredoka', sans-serif; color: #d64d67; font-size: 2.2rem; margin-bottom: 20px; }
+  .visit-us .info-item { margin-bottom: 15px; font-size: 1.1rem; color: #4a3b32; font-weight: 500; }
   .visit-us .info-item strong { color: #e56b81; }
 
-  /* --- CART PANEL (SLIDING FROM RIGHT) --- */
-  #cart-panel { 
-    position: fixed; 
-    right: 0; 
-    top: 0; 
-    height: 100%; 
-    width: 100%; 
-    max-width: 400px; 
-    background: #fff; 
-    box-shadow: -10px 0 40px rgba(0,0,0,0.2); 
-    transform: translateX(100%); 
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    padding: 25px; 
-    overflow-y: auto; 
-    z-index: 200; 
-    display: flex; 
-    flex-direction: column; 
-  }
+  #cart-panel { position: fixed; right: 0; top: 0; height: 100%; width: 100%; max-width: 400px; background: #fff; box-shadow: -10px 0 40px rgba(0,0,0,0.2); transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 25px; overflow-y: auto; z-index: 200; display: flex; flex-direction: column; }
   #cart-panel.open { transform: translateX(0); }
-  #cart-panel h2 { 
-    font-family: 'Fredoka', sans-serif; 
-    margin-bottom: 15px; 
-    color: #d64d67; 
-    font-size: 1.8rem;
-  }
-  #close-cart { 
-    background: #f0f0f0; 
-    border: none; 
-    font-size: 1.5rem; 
-    cursor: pointer; 
-    position: absolute; 
-    top: 20px; 
-    right: 20px; 
-    color: #555; 
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  #cart-panel h2 { font-family: 'Fredoka', sans-serif; margin-bottom: 15px; color: #d64d67; font-size: 1.8rem; }
+  #close-cart { background: #f0f0f0; border: none; font-size: 1.5rem; cursor: pointer; position: absolute; top: 20px; right: 20px; color: #555; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
   
-  .cart-item { 
-    display: flex; 
-    justify-content: space-between; 
-    padding: 15px 0; 
-    border-bottom: 1px solid #eee; 
-    font-size: 0.95rem; 
-  }
-  .cart-item button { 
-    background: none; 
-    border: none; 
-    color: #ff8da1; 
-    cursor: pointer; 
-    font-weight: 600; 
-    padding: 0 10px; 
-  }
-  #cart-total { 
-    margin: 20px 0; 
-    font-weight: 600; 
-    font-size: 1.4rem; 
-    color: #d64d67; 
-    text-align: right;
-  }
+  .cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+  .cart-item button { background: none; border: none; color: #ff8da1; cursor: pointer; font-weight: 600; padding: 0 10px; }
+  #cart-total { margin: 20px 0; font-weight: 600; font-size: 1.4rem; color: #d64d67; text-align: right; }
   
-  /* --- FORM FIELDS --- */
   .form-group { margin-bottom: 12px; }
-  .form-group label { 
-    display: block; 
-    font-size: 0.85rem; 
-    margin-bottom: 5px; 
-    color: #665; 
-    font-weight: 600;
-  }
-  .form-group input { 
-    width: 100%; 
-    padding: 14px; 
-    border: 1px solid #ddd; 
-    border-radius: 12px; 
-    font-family: 'Poppins', sans-serif; 
-    font-size: 1rem;
-    background: #fafafa;
-  }
+  .form-group label { display: block; font-size: 0.85rem; margin-bottom: 5px; color: #665; font-weight: 600; }
+  .form-group input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 1rem; background: #fafafa; }
   .form-group input:focus { outline: none; border-color: #ff8da1; background: #fff; }
   
-  #checkout-btn { 
-    width: 100%; 
-    background: #25D366; 
-    color: #fff; 
-    border: none; 
-    padding: 18px; 
-    border-radius: 14px; 
-    font-weight: 600; 
-    font-size: 1.1rem; 
-    cursor: pointer; 
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
-  #checkout-btn:active { background: #1da851; }
+  #checkout-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 18px; border-radius: 14px; font-weight: 600; font-size: 1.1rem; cursor: pointer; margin-top: 15px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+  #checkout-btn:disabled { background: #999; cursor: not-allowed; }
 
-  /* --- FOOTER --- */
-  footer { 
-    text-align: center; 
-    padding: 40px 20px; 
-    background: #4a3b32; 
-    color: #fff; 
-  }
+  footer { text-align: center; padding: 40px 20px; background: #4a3b32; color: #fff; }
   footer h3 { font-family: 'Fredoka', sans-serif; font-size: 1.5rem; margin-bottom: 5px; }
   footer p { opacity: 0.7; font-size: 0.85rem; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -310,13 +68,13 @@
 </header>
 
 <section class="hero">
-  <h2>Sweetness Delivered in Kigali</h2>
-  <p>Your daily dose of happiness is just a click away. Premium chocolates, gummies, and local sweets delivered straight to your door.</p>
+  <h2>Sweetness Delivered in Muscat</h2>
+  <p>Your daily dose of happiness is just a click away. Premium chocolates, gummies, and local sweets delivered straight to your door in Oman.</p>
 </section>
 
 <section class="about">
   <h2>About Craveret</h2>
-  <p>We believe that every day deserves a little sweetness. Whether you are treating yourself, surprising a friend, or celebrating a special occasion, we handpick the best treats to bring a smile to your face. Fresh, fast, and delivered with love in Kigali.</p>
+  <p>We believe that every day deserves a little sweetness. Whether you are treating yourself, surprising a friend, or celebrating a special occasion, we handpick the best treats to bring a smile to your face. Fresh, fast, and delivered with love in Oman.</p>
 </section>
 
 <h2 class="section-title">Our Sweet Menu</h2>
@@ -324,27 +82,26 @@
 
 <section class="visit-us">
   <h2>📍 Visit Us</h2>
-  <div class="info-item"><strong>Location:</strong> Kigali, Rwanda (Exact address here)</div>
-  <div class="info-item"><strong>Hours:</strong> Mon-Sat: 9:00 AM - 8:00 PM</div>
-  <div class="info-item"><strong>Call/WhatsApp:</strong> +250 XXX XXX XXX</div>
+  <div class="info-item"><strong>Location:</strong> Muscat, Oman</div>
+  <div class="info-item"><strong>Hours:</strong> Mon-Sat: 9:00 AM - 9:00 PM</div>
+  <div class="info-item"><strong>Call/WhatsApp:</strong> +968 9208 2437</div>
 </section>
 
 <aside id="cart-panel">
   <button id="close-cart">×</button>
   <h2>Your Sweet Cart</h2>
   <div id="cart-items" style="flex: 1;"></div>
-  <div id="cart-total">Total: 0 RWF</div>
+  <div id="cart-total">Total: 0.000 OMR</div>
   
   <div class="form-group">
     <label>Your Name</label>
-    <input type="text" id="customer-name" placeholder="e.g., Amina">
+    <input type="text" id="customer-name" placeholder="e.g., Ahmed">
   </div>
   <div class="form-group">
     <label>Delivery Location (Area/Street)</label>
-    <input type="text" id="customer-address" placeholder="e.g., Kimironko, near the market">
+    <input type="text" id="customer-address" placeholder="e.g., Al Khuwair, near the mall">
   </div>
   
-  <!-- GPS LOCATION SECTION (AUTO COPY) -->
   <div class="form-group" style="background: #fffafb; padding: 15px; border-radius: 12px; border: 1px solid #ffe0e6; margin-top: 15px;">
     <label style="color: #d64d67; font-size: 0.95rem;">📍 Precise Delivery Pin</label>
     <p style="font-size: 0.75rem; color: #888; margin-bottom: 10px;">Tap below to auto-copy your exact map location.</p>
@@ -353,25 +110,34 @@
   </div>
 
   <button id="checkout-btn">
-    <span>💬</span> Checkout via WhatsApp
+    <span>💬</span> Checkout & Save Order
   </button>
 </aside>
 
 <footer>
   <h3>Craveret</h3>
-  <p>Kigali, Rwanda · MTN MoMo & Airtel Money accepted</p>
+  <p>Muscat, Oman · Cash & Card Accepted</p>
   <p style="margin-top: 10px; font-size: 0.75rem;">© 2026 Craveret. Made with love.</p>
 </footer>
 
 <script>
-// YOU CAN CHANGE THE PRODUCTS, PRICES, AND IMAGES HERE
+// ==========================================
+// YOUR REAL KEYS ARE PLACED HERE!
+// ==========================================
+const SUPABASE_URL = "https://glzudqcvxtruiajtk...."; 
+const SUPABASE_KEY = "sb_publishable_mRcmSKdJbFWIIM-N5juyk7g_vlNPWSny";
+
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// Products Data (Omani Rial prices)
 const products = [
-  { id: 1, name: "Milk Chocolate Bar", price: 2500, allergens: "Milk, Soy", img: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=400&q=80" },
-  { id: 2, name: "Fruit Gummies", price: 1500, allergens: "None", img: "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=400&q=80" },
-  { id: 3, name: "Local Honey Sweets", price: 1000, allergens: "None", img: "https://images.unsplash.com/photo-1587049352847-8d4e8b2a5e28?auto=format&fit=crop&w=400&q=80" },
-  { id: 4, name: "Lollipop Pack (10)", price: 2000, allergens: "None", img: "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=400&q=80" },
-  { id: 5, name: "Dark Chocolate 70%", price: 3500, allergens: "Soy", img: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?auto=format&fit=crop&w=400&q=80" },
-  { id: 6, name: "Craveret Gift Box", price: 8000, allergens: "Milk, Nuts", img: "https://images.unsplash.com/photo-1573851552153-816785fecb2d?auto=format&fit=crop&w=400&q=80" }
+  { id: 1, name: "Milk Chocolate Bar", price: 1.500, allergens: "Milk, Soy", img: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=400&q=80" },
+  { id: 2, name: "Fruit Gummies", price: 1.000, allergens: "None", img: "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=400&q=80" },
+  { id: 3, name: "Local Honey Sweets", price: 2.500, allergens: "None", img: "https://images.unsplash.com/photo-1587049352847-8d4e8b2a5e28?auto=format&fit=crop&w=400&q=80" },
+  { id: 4, name: "Lollipop Pack (10)", price: 0.500, allergens: "None", img: "https://images.unsplash.com/photo-1575224300306-1b8da36134ec?auto=format&fit=crop&w=400&q=80" },
+  { id: 5, name: "Dark Chocolate 70%", price: 2.000, allergens: "Soy", img: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?auto=format&fit=crop&w=400&q=80" },
+  { id: 6, name: "Craveret Gift Box", price: 5.500, allergens: "Milk, Nuts", img: "https://images.unsplash.com/photo-1573851552153-816785fecb2d?auto=format&fit=crop&w=400&q=80" }
 ];
 
 const cart = {};
@@ -381,14 +147,13 @@ const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 const cartCount = document.getElementById("cart-count");
 
-// Render Products
 function renderProducts() {
   grid.innerHTML = products.map(p => `
     <div class="card">
       <img src="${p.img}" alt="${p.name}">
       <div class="info">
         <h3>${p.name}</h3>
-        <div class="price">${p.price.toLocaleString()} RWF</div>
+        <div class="price">${p.price.toFixed(3)} OMR</div>
         <div class="allergens">Allergens: ${p.allergens}</div>
         <button onclick="addToCart(${p.id})">Add to Cart</button>
       </div>
@@ -396,20 +161,17 @@ function renderProducts() {
   `).join("");
 }
 
-// Add to Cart
 function addToCart(id) {
   cart[id] = (cart[id] || 0) + 1;
   renderCart();
   cartPanel.classList.add("open");
 }
 
-// Remove from Cart
 function removeFromCart(id) {
   delete cart[id];
   renderCart();
 }
 
-// Render Cart
 function renderCart() {
   const entries = Object.entries(cart);
   let total = 0, count = 0;
@@ -419,14 +181,13 @@ function renderCart() {
     count += qty;
     return `<div class="cart-item">
       <span>${p.name} <strong>× ${qty}</strong></span>
-      <span>${(p.price * qty).toLocaleString()} RWF <button onclick="removeFromCart(${id})">✕</button></span>
+      <span>${(p.price * qty).toFixed(3)} OMR <button onclick="removeFromCart(${id})">✕</button></span>
     </div>`;
-  }).join("") || "<p style='color:#999; text-align:center; margin-top:20px;'>Your cart is empty. Add some sweets!</p>";
-  cartTotal.textContent = `Total: ${total.toLocaleString()} RWF`;
+  }).join("") || "<p style='color:#999; text-align:center; margin-top:20px;'>Your cart is empty.</p>";
+  cartTotal.textContent = `Total: ${total.toFixed(3)} OMR`;
   cartCount.textContent = count;
 }
 
-// GPS Location Function (Auto-Copy)
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -434,31 +195,20 @@ function getLocation() {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
         const mapLink = `https://maps.google.com/?q=${lat},${lng}`;
-        
         document.getElementById("customer-gps").value = mapLink;
-        
         navigator.clipboard.writeText(mapLink).then(() => {
-          alert("📍 Location captured and copied to clipboard!\n\nYour exact map link has been added to the box.");
-        }).catch(() => {
-          alert("📍 Location captured! The link is in the box.");
-        });
-        
+          alert("📍 Location captured and copied to clipboard!");
+        }).catch(() => {});
       },
-      (error) => {
-        alert("Could not get location. Please paste a Google Maps link manually.");
-      }
+      (error) => { alert("Could not get location."); }
     );
-  } else {
-    alert("Your browser doesn't support GPS. Please paste a Google Maps link manually.");
   }
 }
 
-// UI Toggles
 document.getElementById("cart-btn").onclick = () => cartPanel.classList.toggle("open");
 document.getElementById("close-cart").onclick = () => cartPanel.classList.remove("open");
 
-// Checkout to WhatsApp
-document.getElementById("checkout-btn").onclick = () => {
+document.getElementById("checkout-btn").onclick = async () => {
   if (!Object.keys(cart).length) return alert("Your cart is empty. Add some sweets first!");
   
   const name = document.getElementById("customer-name").value;
@@ -466,32 +216,50 @@ document.getElementById("checkout-btn").onclick = () => {
   const gpsLink = document.getElementById("customer-gps").value;
   
   if (!name || !address) {
-    return alert("Please enter your name and delivery location so we can find you!");
+    return alert("Please enter your name and delivery location!");
   }
 
-  let msg = "Hello Craveret! I'd like to order:%0A%0A";
+  const btn = document.getElementById("checkout-btn");
+  btn.disabled = true;
+  btn.innerHTML = "Saving order...";
+
+  let orderItemsStr = "";
   let total = 0;
   for (const [id, qty] of Object.entries(cart)) {
     const p = products.find(x => x.id == id);
     total += p.price * qty;
-    msg += `• ${p.name} x ${qty} = ${(p.price*qty).toLocaleString()} RWF%0A`;
+    orderItemsStr += `${p.name} (x${qty}), `;
   }
-  
-  msg += `%0A*Total:* ${total.toLocaleString()} RWF%0A`;
+
+  try {
+    const { error } = await db.from('orders').insert([
+      { 
+        customer_name: name, 
+        address: address, 
+        gps_link: gpsLink, 
+        order_items: orderItemsStr, 
+        total_price: total 
+      }
+    ]);
+    if (error) console.error("Database Error:", error);
+  } catch (err) {
+    console.error("Network Error:", err);
+  }
+
+  let msg = "Hello Craveret! I'd like to order:%0A%0A";
+  msg += orderItemsStr.replace(/, /g, '%0A• ') + "%0A";
+  msg += `%0A*Total:* ${total.toFixed(3)} OMR%0A`;
   msg += `%0A*Name:* ${name}`;
   msg += `%0A*Address:* ${address}`;
+  if (gpsLink) msg += `%0A*GPS Pin:* ${gpsLink}`;
   
-  if (gpsLink) {
-    msg += `%0A*GPS Pin:* ${gpsLink}`;
-  }
-  
-  // YOUR WHATSAPP NUMBER
   const myNumber = "96892082437"; 
-  
   window.open(`https://wa.me/${myNumber}?text=${msg}`, "_blank");
+
+  btn.disabled = false;
+  btn.innerHTML = `<span>💬</span> Checkout & Save Order`;
 };
 
-// Initialize
 renderProducts();
 renderCart();
 </script>
